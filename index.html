@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let data = [{"id": 1, "name": "Иван Иванов", "email": "pereinar@optonline.net", "phone": "12345344", "title": "Мениджър"},
+                {"id": 2, "name": "Мария Петрова", "email": "juliano@aol.com", "phone": "368938736", "title": "Програмист"},
+                {"id": 3, "name": "Стефан Колев", "email": "jipsen@outlook.com", "phone": "866893", "title": "Финансов директор"},
+                {"id": 4, "name": "Петя Илиева", "email": "rasca@msn.com", "phone": "10237129", "title": "Бодигард"},
+                {"id": 5, "name": "Деница Филева", "email": "mahbub@att.net", "phone": "0739483", "title": "Офис сътрудник"}];
+            
+            let btn = document.querySelector('#button');  
+            btn.addEventListener('click', () => {
+                fetch('/api.js', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    },
+                        body: JSON.stringify(data)
+                    });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="button">Click</button>
+</body>
+</html>
