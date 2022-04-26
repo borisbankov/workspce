@@ -10,11 +10,11 @@ http.createServer( async (request, response) => {
    console.log("Request for " + pathname + " received.");
    if(request.method == 'POST'){
       request.on('data', chunk => {
-         // data may not have been fully loaded, push data in chunks
+         // Data may not have been fully loaded, push data in chunks
          data += chunk;
       });
       request.on('end', () => {
-         // work with ur data
+         // Work with your data
          console.log(JSON.parse(data));
       });
    }
@@ -26,7 +26,7 @@ http.createServer( async (request, response) => {
          // Content Type: text/plain
          response.writeHead(404, {"Content-Type": "text/html"});
       } else {
-         //Page found       
+         // Page found       
          // HTTP Status: 200 : OK
          // Content Type: text/plain
          response.writeHead(200, {"Content-Type": "text/html"});    
