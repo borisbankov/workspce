@@ -1,24 +1,13 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
-let data = ''
 // Create a server
 http.createServer( async (request, response) => { 
    // Parse the request containing file name
    var pathname = url.parse(request.url).pathname;
    // Print the name of the file for which request is made.
    console.log("Request for " + pathname + " received.");
-   if(request.method == 'POST'){
-      request.on('data', chunk => {
-         // Data may not have been fully loaded, push data in chunks
-         data += chunk;
-      });
-      request.on('end', () => {
-         // Work with your data
-         console.log(JSON.parse(data));
-      });
-   }
-   // Read the requested file content from file system
+
    fs.readFile(pathname.substr(1), function (err, data) {
       if (err) {
          console.log(err);
@@ -36,4 +25,5 @@ http.createServer( async (request, response) => {
       // Send the response body
       response.end();
    });  
+
 }).listen(8080);
