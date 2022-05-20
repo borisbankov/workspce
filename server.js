@@ -18,7 +18,19 @@ http.createServer( async (request, response) => {
          // Page found       
          // HTTP Status: 200 : OK
          // Content Type: text/plain
-         response.writeHead(200, {"Content-Type": "text/html"});    
+         let dotoffset = request.url.lastIndexOf('.');
+         let mimetype = dotoffset == -1
+                           ? 'text/plain'
+                           : {
+                              '.html' : 'text/html',
+                              '.ico' : 'image/x-icon',
+                              '.jpg' : 'image/jpeg',
+                              '.png' : 'image/png',
+                              '.gif' : 'image/gif',
+                              '.css' : 'text/css',
+                              '.js' : 'text/javascript'
+                              }[ request.url.substr(dotoffset) ];
+         response.setHeader('Content-type' , mimetype);
          // Write the content of the file to response body
          response.write(data.toString());      
       }
